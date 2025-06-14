@@ -10,14 +10,14 @@ export async function POST(req: NextRequest) {
   }
 
   const metadata = {
-    testId
+    testId,
   };
 
   try {
     const session = await stripe.checkout.sessions.create({
-      line_items: [{ price, quantity: 1 }],
+      line_items: [{ price, quantity: 1 }], // itens vendidos
       mode: "payment",
-      payment_method_types: ["card", "boleto"],
+      payment_method_types: ["card", "boleto"], // metodos de pagamento
       success_url: `${req.headers.get("origin")}/success`,
       cancel_url: `${req.headers.get("origin")}/`,
       ...(userEmail && { customer_email: userEmail }),
@@ -30,7 +30,7 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json({ sessionId: session.id }, { status: 200 })
   } catch (error) {
-    console.log(error);
+    console.log((error as Error).message);
     return NextResponse.error();
   }
 }

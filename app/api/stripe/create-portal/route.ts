@@ -21,7 +21,7 @@ export async function POST(req: NextRequest) {
 
     const customerId = userDoc.data()?.stripeCustomerId;
 
-    if (customerId) {
+    if (!customerId) {
       return NextResponse.json({ error: "Customer not found" }, { status: 400 });
     }
 

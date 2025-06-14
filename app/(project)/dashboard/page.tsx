@@ -1,5 +1,6 @@
 import { handleAuth } from "@/app/actions/handleAuth";
 import { auth } from "@/app/lib/auth";
+import Link from "next/link";
 import { redirect } from "next/navigation";
 
 const Dashboard = async () => {
@@ -27,6 +28,8 @@ const Dashboard = async () => {
           </form>
         )
       }
+
+      <Link href="/payments">Pagamentos</Link>
     </div>
   );
 }
