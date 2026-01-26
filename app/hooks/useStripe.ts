@@ -17,8 +17,7 @@ export function useStripe() {
     loadStripeAsync();
   }, []);
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  async function createPaymentStripeCheckout(checkoutData: any) {
+  async function createPaymentStripeCheckout(checkoutData: { testId: string }) {
     if(!stripe) return;
 
     try {
@@ -40,8 +39,7 @@ export function useStripe() {
     }
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  async function createSubscriptionStripeCheckout(checkoutData: any) {
+  async function createSubscriptionStripeCheckout(checkoutData: { testId: string }) {
     if (!stripe) return;
 
     try {
